@@ -14,16 +14,16 @@ const ExchangeRate = () => {
     const fetchRate = async () => {
       try {
         const response = await axios.get(`https://v6.exchangerate-api.com/v6/610f9ff4857bf3be497f56b9/latest/${fromCurrency}`);
-        console.log(response.data); // Verifica la estructura de la
-        setRate(response.data.conversion_rates[toCurrency]); // Aj
-        setCurrencies(Object.keys(response.data.conversion_rates))
+        console.log(response.data);
+        setRate(response.data.conversion_rates[toCurrency]); 
+        setCurrencies(Object.keys(response.data.conversion_rates)); 
       } catch (err) {
         setError(err.message);
       }
     };
 
     fetchRate();
-    const interval = setInterval(fetchRate, 60000); // Actualizar cada minuto
+    const interval = setInterval(fetchRate, 60000); 
 
     return () => clearInterval(interval);
   }, [fromCurrency, toCurrency]);
